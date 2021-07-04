@@ -20,4 +20,4 @@ jobs:
     - name: Compiling
       run: |
         echo -e "\nCompiling US_Core.sp..." 
-        addons/sourcemod/scripting/spcomp scripting/US_Core.sp -O2 -t4 -v2
+        addons/sourcemod/scripting/spcomp scripting/US_Core.sp -O2 -t4 -v2 -i scripting
