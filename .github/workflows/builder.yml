@@ -1,0 +1,26 @@
+name: US Builder
+
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Download sourcemod
+      run: |
+        wget "http://www.sourcemod.net/latest.php?version=1.10&os=linux" -O sourcemod.tar.gz
+        tar -xzf sourcemod.tar.gz
+    - name: Setting permissions
+      run: chmod +x addons/sourcemod/scripting/spcomp
+    - name: Compiling
+      run: |
+        for file in scripting/*.sp
+        do
+          echo -e "\nCompiling $file..." 
+          addons/sourcemod/scripting/spcomp -E -w234 -O2 -v2 $file
+        done
